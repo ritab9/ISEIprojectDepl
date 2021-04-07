@@ -1,0 +1,58 @@
+{% extends 'accounts/main.html' %}
+
+
+{% block content %}
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>{{teacher}}</h5>
+            <hr>
+            <div class="row">
+                <div class ="col-sm-4">
+                <h6>Certification Type: Semi-professional</h6>
+                    <h7>Endorsement: History, Religion</h7><br><br>
+                    <h7> Issued: 04/01/2018 </h7><br>
+                    <h7> Expires: 09/30/2021 </h7>
+                </div>
+            <br>
+                <div class="col-sm-7">
+                <div class = "row">
+                <div class="col-sm-4" align="right">
+                    <h7>Renewal Requirements:</h7>
+                </div>
+                <div class = "col-sm-6" align="left">
+                    <h7>Technology in the Classroom</h7><br>
+                    <h7>Philosophy of SDA Education</h7><br>
+                    <h7> Six CEUs</h7>
+                </div>
+                </div>
+                <br>
+                <div class = "row">
+                <div class="col-sm-4" align="right">
+                    <h7>Completed so far:</h7>
+                </div>
+                <div class = "col-sm-6" align="left">
+                    <h7>Technology in the Classroom</h7><br>
+                    <h7>Three CEUs</h7><br>
+                </div>
+                </div>
+                </div>
+            </div>
+        </div>
+	</div>
+
+	<div class="col-sm-4">
+		<div class="card card-body">
+			<h5>Contact Information</h5>
+			<hr>
+			<p>Email: {{teacher.user.email}} </p>
+			<p>Phone Number: {{teacher.phone_number}}</p>
+		</div>
+	</div>
+
+	
+</div>
+
+
+{% endblock  %}
