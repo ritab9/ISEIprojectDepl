@@ -102,7 +102,7 @@ elif len(sys.argv)>0 and sys.argv[1]!="collectstatic":
         "default":dj_database_url.parse(os.environ.get("DATABASE_URL")),
     }
 
-# Password validation
+# Pass. validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
