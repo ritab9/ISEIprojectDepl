@@ -15,6 +15,13 @@ import os
 import sys
 import dj_database_url
 from django.core.management.utils import get_random_secret_key
+import environ
+
+# Initialise environment variables
+
+env = environ.Env()
+environ.Env.read_env()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = Path(__file__).resolve().parent.parent
@@ -47,7 +54,7 @@ INSTALLED_APPS = [
     'crispy_forms',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
+CSRF_COOKIE_SECURE = True
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

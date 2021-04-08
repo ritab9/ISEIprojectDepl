@@ -81,12 +81,12 @@ def admindashboard(request):
 def principaldashboard(request, recID=None):
     principal = request.user.teacher
     teachers = Teacher.objects.filter(school = principal.school)
-    pda_record_unsigned = PDARecord.objects.filter(teacher__school=principal.school, date_submitted__isnull=False, principal_signature = False)
-    pda_record_signed = PDARecord.objects.filter(teacher__school=principal.school, date_submitted__isnull=False, principal_signature = True)
+    pda_record_unsigned = PDARecord.objects.filter(teacher__school=principal.school, date_submitted__isnull=False, principal_signed = False)
+    pda_record_signed = PDARecord.objects.filter(teacher__school=principal.school, date_submitted__isnull=False, principal_signed = True)
 
     if request.method == 'POST':
         if request.POST.get('sign'):
-            PDARecord.objects.filter(id=recID).update(principal_signature=True)
+            PDARecord.objects.filter(id=recID).update(principal_signed=True)
             #pda_record = PDARecord.objects.get(id=recID)
             #pda_record.principal_signed=True
             #pda_record.save()
@@ -99,12 +99,12 @@ def principaldashboard(request, recID=None):
 def teachercertification(request, recID=None):
     principal = request.user.teacher
     teachers = Teacher.objects.filter(school = principal.school)
-    pda_record_unsigned = PDARecord.objects.filter(teacher__school=principal.school, date_submitted__isnull=False, principal_signature = False)
-    pda_record_signed = PDARecord.objects.filter(teacher__school=principal.school, date_submitted__isnull=False, principal_signature = True)
+    pda_record_unsigned = PDARecord.objects.filter(teacher__school=principal.school, date_submitted__isnull=False, principal_signed = False)
+    pda_record_signed = PDARecord.objects.filter(teacher__school=principal.school, date_submitted__isnull=False, principal_signed = True)
 
     if request.method == 'POST':
         if request.POST.get('sign'):
-            PDARecord.objects.filter(id=recID).update(principal_signature=True)
+            PDARecord.objects.filter(id=recID).update(principal_signed=True)
             #pda_record = PDARecord.objects.get(id=recID)
             #pda_record.principal_signed=True
             #pda_record.save()
@@ -188,7 +188,7 @@ def createrecord(request, pk, sy):
     pda_record = PDARecord()
     pda_record.teacher = Teacher.objects.get(user__id=pk)
     pda_record.school_year = SchoolYear.objects.get(id=sy)
-    pda_record.principal_signature = False
+    pda_record.principal_signed = False
     pda_record.save()
 
     return redirect('create_pda', recId =pda_record.id)
