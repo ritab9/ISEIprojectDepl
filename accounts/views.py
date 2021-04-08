@@ -51,7 +51,8 @@ def loginpage(request):
                     return redirect('admin_dashboard')
         else:
             messages.info(request, 'Username OR password is incorrect')
-
+    else:
+        messages.info(request,'Have not received a post request')
     context = {}
     return render(request, 'accounts/login.html', context)
 
