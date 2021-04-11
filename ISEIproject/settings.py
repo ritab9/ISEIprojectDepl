@@ -34,9 +34,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG","FALSE")=="True"
+DEBUG = os.getenv("DEBUG")
 
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS","127.0.0.1,localhost").split(",")
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 
 # Application definition
 
@@ -71,7 +71,7 @@ ROOT_URLCONF = 'ISEIproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS':  [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -95,18 +95,18 @@ if DEVELOPMENT_MODE is True:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'ISEIproject',
-            'USER': 'root',
-            'PASSWORD': 'Kesztyu9!',
-            'HOST': 'localhost',
-            'PORT': '3306',
+            'NAME': os.getenv('DATABASE_NAME'),
+            'USER': os.getenv('DATABASE_USER'),
+            'PASSWORD': os.getenv('DATABASE_PASS'),
+            'HOST': '',
+            'PORT': '',
         }
     }
-elif len(sys.argv)>0 and sys.argv[1]!="collectstatic":
-    if os.getenv("DATABASE_URL",None) is None:
+elif len(sys.argv) > 0 and sys.argv[1] != "collectstatic":
+    if os.getenv("DATABASE_URL", None) is None:
         raise Exception("DATABASE_URL environment variable not defined")
     DATABASES = {
-        "default":dj_database_url.parse(os.environ.get("DATABASE_URL")),
+        "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
     }
 
 # Pass. validation
@@ -149,18 +149,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 
-#STATICFILES_DIRS =(os.path.join(BASE_DIR, 'static')
+# STATICFILES_DIRS =(os.path.join(BASE_DIR, 'static')
 
-
-
-
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # SMTP Configuration
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'ritab.isei.life@gmail.com'
-EMAIL_HOST_PASSWORD = 'Priv8cy1st'
-
-
